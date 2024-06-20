@@ -19,12 +19,12 @@ jobs:
           - 5432:5432
     steps:
       - name: Reclaim some disk space
-        run: docker system prune --all --volumes -f      
+        run: docker system prune --all --volumes -f
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-        
+
       - name: Install dependencies
         run: |
           yarn
@@ -34,12 +34,11 @@ jobs:
 
       - name: Compile
         run: yarn build
-
+      # - name: Run Migrations
+      #   run: yarn database:run-migrations
       - name: Run API
-        run: |
-          yarn database:run-migrations
-          yarn start:prod > api.log &
-        env: 
+        run: yarn start:prod > api.log &
+        env:
           API_PORT: 4100
           API_HOST: localhost
 
@@ -49,7 +48,7 @@ jobs:
       - name: End2End Test
         run: |
           yarn test:e2e
-        env: 
+        env:
           API_PORT: 4100
           API_HOST: localhost
 
@@ -58,4 +57,4 @@ jobs:
         if: failure()
         with:
           name: api-output
-          path: api.log          
+          path: api.log
