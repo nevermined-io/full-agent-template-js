@@ -1,3 +1,5 @@
+[![banner](https://raw.githubusercontent.com/nevermined-io/assets/main/images/logo/banner_logo.png)](https://nevermined.io)
+
 # Nevermined Agent API Template (Typescript)
 
 > Build AI Agents able to interact with other Agents and the Nevermined Network.
