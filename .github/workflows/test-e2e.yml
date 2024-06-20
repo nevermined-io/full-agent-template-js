@@ -1,0 +1,61 @@
+name: End2End Tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: agent_db
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    steps:
+      - name: Reclaim some disk space
+        run: docker system prune --all --volumes -f      
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+        
+      - name: Install dependencies
+        run: |
+          yarn
+
+      - name: Check lint
+        run: yarn lint
+
+      - name: Compile
+        run: yarn build
+
+      - name: Run API
+        run: |
+          yarn database:run-migrations
+          yarn start:prod > api.log &
+        env: 
+          API_PORT: 4100
+          API_HOST: localhost
+
+      - name: Wait a bit for the API
+        run: wget --retry-connrefused --tries=60 http://localhost:4100/api
+
+      - name: End2End Test
+        run: |
+          yarn test:e2e
+        env: 
+          API_PORT: 4100
+          API_HOST: localhost
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: api-output
+          path: api.log          
