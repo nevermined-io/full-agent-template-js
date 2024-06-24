@@ -1,4 +1,4 @@
-export default () => ({
+export const appConfig = {
   api: {
     host: process.env.API_HOST || 'localhost',
     port: parseInt(process.env.API_PORT, 10) || 4100,
@@ -19,8 +19,13 @@ export default () => ({
     level: process.env.LOG_LEVEL || ['error', 'log', 'warn']
   },
   database: {
-    type: process.env.DATABASE_TYPE,
+    type: process.env.DATABASE_TYPE || 'sqlite', // sqlite, mysql, postgres, etc
+    name: process.env.DATABASE_NAME || '/tmp/agent-template.db', // path to the database file if sqlite if is a different database type put the database name instead
     host: process.env.DATABASE_HOST,
-    port: parseInt(process.env.DATABASE_PORT, 10) || 5432
+    port: parseInt(process.env.DATABASE_PORT, 10),
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    schena: process.env.DATABASE_SCHEMA
   }
-})
+}
+export default () => appConfig

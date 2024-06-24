@@ -11,6 +11,7 @@ export abstract class AgentsFactory {
     const task_id = `task-${uuidv4()}`
     const task: Task = {
       task_id,
+      name: '',
       input,
       status: ExecutionStatus.PENDING,
       steps: [AgentsFactory.getStepFromTemplate(input, task_id)],
@@ -31,6 +32,7 @@ export abstract class AgentsFactory {
       task_id,
       input,
       status: ExecutionStatus.PENDING,
+      is_last: false,
       created_at: new Date(),
       updated_at: new Date()
     }

@@ -56,8 +56,12 @@ export class AgentController {
     status: 200,
     description: 'Return the task details'
   })
-  getAgentTask(@Param('task_id') taskId: string) {
-    return this.agentService.getTaskById(taskId)
+  async getAgentTask(@Param('task_id') taskId: string) {
+    const fullTask = await this.agentService.getTaskById(taskId)
+    return {
+      task: fullTask.task,
+      steps: fullTask.steps
+    }
   }
 
   @Get()

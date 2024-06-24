@@ -10,7 +10,10 @@ import { ConfigService } from '@nestjs/config'
 
 @Injectable()
 export class AuthorizationGuard implements CanActivate {
-  constructor(private config: ConfigService, private _reflector: Reflector) {}
+  constructor(
+    private config: ConfigService,
+    private _reflector: Reflector
+  ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const apiAuthToken = this.config.get('api.authToken')
     if (!apiAuthToken) return true

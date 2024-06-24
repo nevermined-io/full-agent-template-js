@@ -11,6 +11,11 @@ export interface Task extends ExecutionOptions {
    * The steps executed by the agent to complete the task
    */
   steps: Step[]
+
+  /**
+   * The name of the task
+   */
+  name?: string
 }
 
 export interface Step extends ExecutionOptions {
