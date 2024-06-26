@@ -4,7 +4,7 @@ import { ConsoleLogger, Logger } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { AppModule } from './modules/app.module'
+import { AppModule } from './api/app.module'
 import { ConfigService } from '@nestjs/config'
 
 async function bootstrap() {

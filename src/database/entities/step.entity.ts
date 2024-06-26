@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm'
 import { BaseEntity } from './base.entity'
-import { ExecutionStatus } from 'src/common/models/agent-models'
+import { ExecutionStatus } from '../../common/models/agent-models'
 import { v4 as uuidv4 } from 'uuid'
 
 @Entity('steps')
@@ -14,11 +14,13 @@ export class StepEntity extends BaseEntity {
   @Column('varchar')
   name: string
 
+  @Column('integer')
+  retries: number
+
   @Column('boolean')
   is_last: boolean
 
   @Column({
-    // enum: Object.values(ExecutionStatus),
     enum: ExecutionStatus,
     type: 'simple-enum'
   })
@@ -46,5 +48,6 @@ export class StepEntity extends BaseEntity {
     super()
     this.step_id = `step-${uuidv4()}`
     this.step_status = ExecutionStatus.PENDING
+    this.retries = 0
   }
 }

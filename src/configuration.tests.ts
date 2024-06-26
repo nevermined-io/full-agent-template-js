@@ -1,4 +1,4 @@
-export const appConfig = {
+export const testConfig = {
   api: {
     host: process.env.API_HOST || 'localhost',
     port: parseInt(process.env.API_PORT, 10) || 4100,
@@ -10,25 +10,14 @@ export const appConfig = {
     authToken: process.env.API_AUTH_TOKEN,
     enableHttpsRedirect: process.env.API_ENABLE_HTTPS_REDIRECT === 'true'
   },
-  nvm: {
-    environment: process.env.NVM_ENVIRONMENT,
-    agentDid: process.env.NVM_AGENT_DID,
-    subscriptionDid: process.env.NVM_SUBSCRIPTION_DID
-  },
-  logger: {
-    level: process.env.LOG_LEVEL || ['error', 'log', 'warn']
-  },
   database: {
     type: process.env.DATABASE_TYPE || 'sqlite', // sqlite, mysql, postgres, etc
-    name: process.env.DATABASE_NAME || '/tmp/agent-template.db', // path to the database file if sqlite if is a different database type put the database name instead
+    name: process.env.DATABASE_NAME || '/tmp/test/agent-template.db', // path to the database file if sqlite if is a different database type put the database name instead
     host: process.env.DATABASE_HOST,
     port: parseInt(process.env.DATABASE_PORT, 10),
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     schena: process.env.DATABASE_SCHEMA
-  },
-  processor: {
-    sleepDuration: Number(process.env.AGENT_SLEEP_DURATION) || 3000 // In milliseconds
   }
 }
-export default () => appConfig
+export default () => testConfig

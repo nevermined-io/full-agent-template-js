@@ -21,7 +21,11 @@ export abstract class AgentsFactory {
     return task
   }
 
-  static getStepFromTemplate(input: ExecutionInput | string, task_id: string) {
+  static getStepFromTemplate(
+    input: ExecutionInput | string,
+    task_id: string,
+    isLast = false
+  ) {
     if (typeof input === 'string') {
       input = {
         query: input
@@ -32,7 +36,8 @@ export abstract class AgentsFactory {
       task_id,
       input,
       status: ExecutionStatus.PENDING,
-      is_last: false,
+      is_last: isLast,
+      retries: 0,
       created_at: new Date(),
       updated_at: new Date()
     }

@@ -1,6 +1,6 @@
 import { Routes } from '@nestjs/core'
-import { InfoModule } from './modules/info/info.module'
-import { AgentModule } from './modules/agent/agent.module'
+import { InfoModule } from './api/info/info.module'
+import { AgentModule } from './api/agent/agent.module'
 
 export const routes: Routes = [
   {

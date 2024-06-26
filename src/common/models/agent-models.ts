@@ -65,6 +65,11 @@ export interface ExecutionOptions {
    * When the execution was last updated
    */
   updated_at?: Date
+
+  /**
+   * The number of retries for the task or step
+   */
+  retries?: number
 }
 
 /**

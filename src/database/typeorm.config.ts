@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
   username: configService.get('database.username'),
   password: configService.get<string>('database.password'),
   database: configService.get('database.name'),
-  logging: ['query', 'log', 'error', 'warn', 'info'],
+  logging: ['log', 'error', 'warn', 'info'],
   entities: [],
   migrations: [AgentBase1718898482722]
 })

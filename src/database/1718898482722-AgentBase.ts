@@ -97,6 +97,11 @@ export class AgentBase1718898482722 implements MigrationInterface {
             isNullable: false
           },
           {
+            name: 'retries',
+            type: 'integer',
+            default: 0
+          },
+          {
             name: 'step_status',
             type: 'enum',
             default: "'PENDING'",

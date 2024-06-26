@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import * as request from 'supertest'
-import { InfoModule } from '../src/modules/info/info.module'
+import { InfoModule } from '../src/api/info/info.module'
 
 describe('InfoController (e2e)', () => {
   let app: INestApplication

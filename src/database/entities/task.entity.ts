@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm'
 import { BaseEntity } from './base.entity'
-import { ExecutionStatus } from 'src/common/models/agent-models'
+import { ExecutionStatus } from '../../common/models/agent-models'
 import { v4 as uuidv4 } from 'uuid'
 
 @Entity('tasks')

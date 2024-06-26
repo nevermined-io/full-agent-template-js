@@ -8,3 +8,6 @@ export function extractAuthTokenFromHeader(
     return undefined
   }
 }
+
+export const sleep = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms))
