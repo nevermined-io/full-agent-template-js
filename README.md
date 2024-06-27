@@ -37,8 +37,14 @@ Just clone this repository and run the following commands:
 # Install all the dependencies
 $ yarn
 
-# Start the server
-$ yarn start
+# Configure the database where we are gonna store the tasks and steps info
+$ yarn database:run-migrations
+
+# Start the api server
+$ yarn start:api
+
+# Start the backend transactions processor
+$ yarn start:proc
 ```
 
 By default the server will start at `http://localhost:4100`. You can change the port by setting the `API_PORT` environment variable.
@@ -59,7 +65,7 @@ The agent can be configured using environment variables. The following variables
 
 The template is designed to be as simple as possible to allow you to focus on the AI logic of your agent. The main files you need to modify are:
 
-- `agent.service.ts`: This file contains the main logic of your agent. You can implement your AI logic here.
+- `processor.controller.ts`: This file contains the main logic of your agent. You can implement your AI logic here.
 
 ## License
 

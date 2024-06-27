@@ -28,7 +28,10 @@ export const appConfig = {
     schena: process.env.DATABASE_SCHEMA
   },
   processor: {
-    sleepDuration: Number(process.env.AGENT_SLEEP_DURATION) || 3000 // In milliseconds
+    sleepDuration: Number(process.env.AGENT_SLEEP_DURATION) || 3000, // In milliseconds
+    ipfsGateway: process.env.IPFS_GATEWAY || 'https://ipfs.infura.io:5001',
+    ipfsProjectId: process.env.IPFS_PROJECT_ID,
+    ipfsProjectSecret: process.env.IPFS_PROJECT_SECRET
   }
 }
 export default () => appConfig

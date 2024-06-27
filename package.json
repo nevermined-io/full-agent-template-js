@@ -1,6 +1,6 @@
 {
   "name": "agent-template-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "private": true,
   "author": "Nevermined <root@nevermined.io>",
@@ -44,6 +44,7 @@
     "rimraf": "^5.0.7",
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.20",
+    "ipfs-http-client-lite": "^0.3.0",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
