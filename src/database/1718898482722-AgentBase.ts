@@ -62,6 +62,12 @@ export class AgentBase1718898482722 implements MigrationInterface {
             type: 'text',
             isNullable: true
           },
+          {
+            name: 'cost',
+            type: 'integer',
+            default: 0,
+            isNullable: true
+          },
           ...baseSchema
         ]
       }),
@@ -135,6 +141,12 @@ export class AgentBase1718898482722 implements MigrationInterface {
           {
             name: 'output_artifacts',
             type: 'text',
+            isNullable: true
+          },
+          {
+            name: 'cost',
+            type: 'integer',
+            default: 0,
             isNullable: true
           },
           ...baseSchema

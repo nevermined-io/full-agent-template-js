@@ -56,13 +56,15 @@ export class ProcessorController implements OnModuleInit {
       Logger.log(`[${task.task_id}] Simulate a step that is still in progress`)
       await this.agentService.updateStep(step.step_id, {
         step_status: ExecutionStatus.IN_PROGRESS,
-        retries: step.retries + 1
+        retries: step.retries + 1,
+        cost: 0
       })
     } else if (randomIndex === 1) {
       Logger.log(`[${task.task_id}] Simulate a step that is failing`)
       await this.agentService.updateStep(step.step_id, {
         step_status: ExecutionStatus.FAILED,
-        output: `{"result": 500, "message": "Failed because ${randomIndex} is 1"}`
+        output: `{"result": 500, "message": "Failed because ${randomIndex} is 1"}`,
+        cost: 0
       })
     } else {
       // Simulate a successful step
@@ -70,7 +72,8 @@ export class ProcessorController implements OnModuleInit {
       await this.agentService.updateStep(step.step_id, {
         step_status: ExecutionStatus.COMPLETED,
         is_last: true,
-        output: `{"result": 200, "message": "${randomIndex}"}`
+        output: `{"result": 200, "message": "${randomIndex}"}`,
+        cost: randomIndex + 1
       })
     }
   }

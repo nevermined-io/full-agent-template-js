@@ -59,11 +59,18 @@ export class AgentService {
   }
 
   updateStep(stepId: string, stepUpdated: Partial<StepEntity>) {
-    Logger.log(`Updating step ${stepId}, with ${JSON.stringify(stepUpdated)}`)
+    Logger.log(`Updating step ${stepId}, with ${stepUpdated.step_status}`)
     return this.stepEntity.update(
       { step_id: stepId },
       { ...stepUpdated, updated_at: new Date() }
     )
+  }
+
+  async getTotalCostForTask(taskId: string) {
+    const totalCost = await AppDataSource.query(
+      `SELECT SUM(steps.cost) as total_cost FROM steps WHERE steps.task_id = \'${taskId}\'`
+    )
+    return totalCost[0].total_cost
   }
 
   async completeTasksWhenStepsAreDone() {
@@ -76,6 +83,7 @@ export class AgentService {
         { task_id: task.task_id },
         {
           task_status: ExecutionStatus.COMPLETED,
+          cost: await this.getTotalCostForTask(task.task_id),
           output: task.output,
           output_artifacts: task.output_artifacts,
           output_additional: task.output_additional,
@@ -100,6 +108,7 @@ export class AgentService {
         { task_id: task.task_id },
         {
           task_status: ExecutionStatus.FAILED,
+          cost: await this.getTotalCostForTask(task.task_id),
           output: task.output,
           output_artifacts: task.output_artifacts,
           output_additional: task.output_additional,

@@ -1,4 +1,5 @@
-import IpfsHttpClientLite from 'ipfs-http-client-lite'
+/* eslint-disable @typescript-eslint/no-var-requires */
+const IpfsHttpClientLite = require('ipfs-http-client-lite')
 
 export interface IpfsConnectionParameters {
   gatewayUrl: string

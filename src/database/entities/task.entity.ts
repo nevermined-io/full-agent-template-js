@@ -18,6 +18,9 @@ export class TaskEntity extends BaseEntity {
   @Column('varchar')
   name: string
 
+  @Column('integer')
+  cost: number
+
   @Column('text')
   input_query: string
 

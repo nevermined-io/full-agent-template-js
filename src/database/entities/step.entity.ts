@@ -17,6 +17,9 @@ export class StepEntity extends BaseEntity {
   @Column('integer')
   retries: number
 
+  @Column('integer')
+  cost: number
+
   @Column('boolean')
   is_last: boolean
 

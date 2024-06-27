@@ -13,7 +13,12 @@ export const appConfig = {
   nvm: {
     environment: process.env.NVM_ENVIRONMENT,
     agentDid: process.env.NVM_AGENT_DID,
-    subscriptionDid: process.env.NVM_SUBSCRIPTION_DID
+    subscriptionDid: process.env.NVM_SUBSCRIPTION_DID,
+    credits: {
+      header: process.env.NVM_CREDITS_HEADER || 'NVMCreditsConsumed',
+      createTask: Number(process.env.NVM_CREDITS_CREATE_TASK) || 1,
+      getTask: Number(process.env.NVM_CREDITS_GET_TASK) || 1
+    }
   },
   logger: {
     level: process.env.LOG_LEVEL || ['error', 'log', 'warn']
